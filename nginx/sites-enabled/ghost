@@ -2,8 +2,6 @@ server {
   listen 80;
   listen [::]:80;
   server_name ghost.edoo.io;
-
-  location / { return 301 https://$host$request_uri; }
 }
 
 server {
