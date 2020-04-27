@@ -11,6 +11,14 @@ server {
   listen [::]:443 http2;
   server_name blog.edoo.io;
 
+  ssl_protocols TLSv1.2;
+  ssl_ciphers HIGH:!MEDIUM:!LOW:!aNULL:!NULL:!SHA;
+  ssl_prefer_server_ciphers on;
+  ssl_session_cache shared:SSL:10m;
+
+  ssl_certificate     /etc/letsencrypt/live/blog.edoo.io/fullchain.pem;
+  ssl_certificate_key /etc/letsencrypt/live/blog.edoo.io/privkey.pem;
+
   location / {
     proxy_set_header Host $host;
     proxy_set_header X-Real-IP $remote_addr;
