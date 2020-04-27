@@ -1,7 +1,14 @@
 server {
   listen 80;
   listen [::]:80;
-  server_name ghost.edoo.io;
+  server_name blog.edoo.io;
+  location / { return 301 https://$host$request_uri; }
+}
+
+server {
+  listen 443 ssl;
+  listen [::]:443 ssl;
+  server_name blog.edoo.io;
 
   location / {
     proxy_set_header Host $host;
@@ -9,5 +16,4 @@ server {
     proxy_set_header X-Forwarded-Proto https;
     proxy_pass http://ghost:2368;
   }
-
 }
