@@ -1,0 +1,21 @@
+version: '3'
+services:
+
+  ghost:
+    image: ghost:3.13.4
+    restart: always
+    ports:
+      - 8080:2368
+    env_file:
+      .env
+    volumes:
+      - /opt/ghost_content:/var/lib/ghost/content
+
+  nginx:
+    build:
+      context: ./nginx
+    restart: always
+    depends_on:
+      - ghost
+    ports:
+      - "80:80"
