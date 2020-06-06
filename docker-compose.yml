@@ -9,6 +9,7 @@ services:
       .env
     volumes:
       - /opt/ghost_content:/var/lib/ghost/content
+      - ./emails:/var/lib/ghost/versions/3.13.4/core/server/services/members/emails
 
   nginx:
     build:
